@@ -1,4 +1,4 @@
-export const contnents = [
+export const continents = [
   {
     id: 1,
     name: 'Europa',

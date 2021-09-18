@@ -1,16 +1,19 @@
-import { Box, Container, Divider, Heading, HStack, Img, Text, VStack } from '@chakra-ui/react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Navigation, Autoplay } from 'swiper';
+import { Box, Container, Divider, HStack, Img, Text, VStack } from '@chakra-ui/react';
 
 import Header from '../components/Header';
 import HomeBanner from '../components/HomeBanner';
-import { contnents } from '../mocks/continents';
+import { continents } from '../mocks/continents';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
+import ContinentSlider from '../components/Slider';
 
 
-export default function Home() {  
+export default function Home() {
+
+  function handleContinentSelected(id: string) {
+    console.log('id', id)
+  }
 
   return (
     <Box>
@@ -51,31 +54,7 @@ export default function Home() {
           Então escolha seu continente
         </Text>
 
-        <Swiper
-          modules={[Pagination, Navigation, Autoplay]}
-          spaceBetween={50}
-          slidesPerView={1}
-          onSlideChange={() => console.log('slide change')}
-          onSwiper={(swiper) => console.log(swiper)}
-          navigation={true}
-          loop={true}
-          pagination={{
-            "clickable": true 
-          }}
-          autoplay={{
-            "delay": 3000,
-            "disableOnInteraction": false
-          }}
-        >
-          {contnents.map(continent => (
-            <SwiperSlide key={continent.id} >
-              <VStack bgImg={continent.photo} w="100%" h="450px" bgPosition="center" bgSize="cover" justify="center">
-                <Heading fontWeight="bold" color="gray.50" fontSize="5xl">{continent.name}</Heading>
-                <Text fontWeight="bold" color="gray.100" fontSize="2xl">{continent.description}</Text>
-              </VStack>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+        <ContinentSlider continents={continents} onContinentSelected={handleContinentSelected}/>
       </Container>
     </Box>
   );
