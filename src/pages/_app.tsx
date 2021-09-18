@@ -4,6 +4,8 @@ import { theme } from '../styles/theme';
 
 import '../styles/swiper.scss';
 
+import '../config/mirage';
+
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider theme={theme}>

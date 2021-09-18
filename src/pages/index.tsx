@@ -1,18 +1,34 @@
+import { useEffect, useState } from 'react';
 import { Box, Container, Divider, HStack, Img, Text, VStack } from '@chakra-ui/react';
 
 import Header from '../components/Header';
 import HomeBanner from '../components/HomeBanner';
-import { continents } from '../mocks/continents';
+import ContinentSlider from '../components/Slider';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
-import ContinentSlider from '../components/Slider';
 
 
 export default function Home() {
 
+  const [continents, setContinents] = useState([]);
+
+  useEffect(() => {
+    getContinents();
+  }, []);
+
   function handleContinentSelected(id: string) {
-    console.log('id', id)
+    // console.log('id', id)
+  }
+
+  async function getContinents() {
+    try {
+      const res = await fetch('/api/continents');
+      const parsedRes = await res.json();
+      setContinents(parsedRes?.continents ?? []);
+    } catch {
+      setContinents([]);
+    }
   }
 
   return (
