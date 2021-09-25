@@ -38,6 +38,7 @@ export const theme = extendTheme<Theme>({
   fonts,
   sizes: {
     container: {
+      lg: '1160px',
       xl: '1240px'
     }
   },

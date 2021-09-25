@@ -11,15 +11,11 @@ import 'swiper/css/pagination';
 
 export default function Home() {
 
-  const [continents, setContinents] = useState([]);
+  const [continents, setContinents] = useState<any[]>([]);
 
   useEffect(() => {
     getContinents();
   }, []);
-
-  function handleContinentSelected(id: string) {
-    // console.log('id', id)
-  }
 
   async function getContinents() {
     try {
@@ -70,7 +66,7 @@ export default function Home() {
           Então escolha seu continente
         </Text>
 
-        <ContinentSlider continents={continents} onContinentSelected={handleContinentSelected}/>
+        <ContinentSlider continents={continents}/>
       </Container>
     </Box>
   );
